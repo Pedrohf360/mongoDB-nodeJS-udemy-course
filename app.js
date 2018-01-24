@@ -4,15 +4,15 @@ var app = express();
 app.set('view engine', 'ejs'); // ejs = motor de geração de views
 
 app.get('/', function(req, res){
-	res.send("<html><head><meta charset=\"UTF-8\"/></head><body>Portal de notícias</body></html>");
+	res.render("home/index");
 });
 
-app.get('/tecnologia', function(req, res){
-	res.render('secao/tecnologia'); // não é necessário especificar extensão do arquivo "tecnologia" (ejs).
+app.get('/formulario_inclusao_noticia', function(req, res){
+	res.render('admin/form_add_noticia'); // não é necessário especificar extensão do arquivo "tecnologia" (ejs).
 });
 
-app.get('/moda', function(req, res){
-	res.send('<html><head><meta charset=\"UTF-8\"/></head><body>Portal de Moda</body></html>');
+app.get('/noticias', function(req, res){
+	res.render('noticias/noticias');
 });
 
 app.listen(3000, function(){
