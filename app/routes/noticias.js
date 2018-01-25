@@ -12,7 +12,7 @@ module.exports = function(app) {
 		}); // estrutura JSON (chave: 'valor')
 
 		connection.query('select * from noticias', function(error, result){
-			res.send(result);
+			res.render('noticias/noticias', {noticias: result});
 		}); // SQL: consulta em si;
 							// callback: o que vai ser feito após a  consulta ser realizada
 
