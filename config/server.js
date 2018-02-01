@@ -1,9 +1,13 @@
 var express = require('express');
 var consign = require('consign');
+var bodyParser = require('body-parser');
 
 var app = express();
 app.set('view engine', 'ejs'); // ejs = motor de geração de views
 app.set('views', './app/views');
+
+// Body-parser = middleWare
+app.use(bodyParser.urlencoded({extended: true}));
 
 consign()
 	.include('app/routes')
