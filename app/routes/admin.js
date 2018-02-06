@@ -6,7 +6,6 @@ module.exports = function(application) {
 	application.post('/noticias/salvar', function(req, res){
 		var noticia = req.body;
 
-		console.log(noticia);
 		// O primeiro parâmetro é a propriedade "name" das tags HTML
 		req.assert('titulo', 'Título é obrigatório!').notEmpty();
 		req.assert('resumo', 'Resumo é obrigatório!').notEmpty();
@@ -17,8 +16,10 @@ module.exports = function(application) {
 
 		var erros = req.validationErrors();
 
+		console.log(erros);
+
 		if(erros){
-			res.render('admin/form_add_noticia');
+			res.render('admin/form_add_noticia', {validacao : erros});
 			return;
 		}
 
