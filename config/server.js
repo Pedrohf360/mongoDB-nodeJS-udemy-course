@@ -1,6 +1,7 @@
 var express = require('express');
 var consign = require('consign');
 var bodyParser = require('body-parser');
+var expressValidator = require('express-validator');
 
 var app = express();
 app.set('view engine', 'ejs'); // ejs = motor de geração de views
@@ -8,6 +9,7 @@ app.set('views', './app/views');
 
 // Body-parser = middleWare
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(expressValidator());
 
 consign()
 	.include('app/routes')
