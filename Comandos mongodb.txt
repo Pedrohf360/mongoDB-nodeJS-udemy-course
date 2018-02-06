@@ -14,3 +14,8 @@ Remover coleção: db.nomeColecao.drop()
 Foram inseridos: 3 documentos dentro da collection alunos, dentro do bd:
 curso_mongodb;
 -------------
+-Consultando documentos com operadores de comparação:
+Ver últ. doc. adc.: db.nomeCollection.findOne()
+Ver todos: db.nomeCollection.find() (adicioanr pretty() para identar exib.)
+
+db.nomeCollection.find({nome:{$eq:"José"}}).pretty()
