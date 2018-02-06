@@ -2,3 +2,9 @@ Exibir: show dbs; (show databases);
 Criar: use (usado para alternar ou preparar um DB para criação);
 		Incluir documento: db.alunos.save({Nome: "Jorge"})
 Remover: db.dropDatabase();
+
+-------------
+Exibir, criar e remover coleções:
+Criar coleção: db.createCollection("alunos")
+Exibir coleções: db.getCollectionNames()
+Remover coleção: db.nomeColecao.drop()
