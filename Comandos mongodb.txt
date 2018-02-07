@@ -34,3 +34,15 @@ db.nomeCollection.find({
 							{propriedade1:{$gte:30}}
 							]
 						})
+						
+--------------
+-Atualizando documentos:
+update:
+({parametros para atualizacao},
+{$set}, 
+{multi:true}) // true = atualiza todos documentos; false = apenas o primeiro
+
+save:
+save(
+	_id: xxxxx
+)
