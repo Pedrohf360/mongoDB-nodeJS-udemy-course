@@ -52,4 +52,6 @@ Remover documentos de dentro das collections:
 
 remove({critério de exclusão}, 0) justone: se for false, ou '0', irá remover todos,
 											se for true, remove apenas o 1º encontrado.
-											
+----------------
+-Interface gráfica nativa do MongoDB(inf. administrativas): função mongod --rest removida
+da versão 3.6.
