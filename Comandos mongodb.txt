@@ -19,3 +19,18 @@ Ver últ. doc. adc.: db.nomeCollection.findOne()
 Ver todos: db.nomeCollection.find() (adicioanr pretty() para identar exib.)
 
 db.nomeCollection.find({nome:{$eq:"José"}}).pretty()
+-------------
+-Consultando documentos com operadores lógicos:
+&& AND: 
+db.nomeCollection.find({
+						propriedade:{$eq:'valor'},
+						propriedade1:{$gt:30}
+						})
+
+|| OR:
+db.nomeCollection.find({
+						$or:[
+							{propriedade:{$eq:'valor'}},
+							{propriedade1:{$gte:30}}
+							]
+						})
