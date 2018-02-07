@@ -46,3 +46,10 @@ save:
 save(
 	_id: xxxxx
 )
+---------------
+-Removendo documentos:
+Remover documentos de dentro das collections:
+
+remove({critério de exclusão}, 0) justone: se for false, ou '0', irá remover todos,
+											se for true, remove apenas o 1º encontrado.
+											
