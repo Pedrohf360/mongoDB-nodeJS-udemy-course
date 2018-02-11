@@ -11,7 +11,7 @@ NoticiasDAO.prototype.getNoticia = function(callback){
 }
 
 NoticiasDAO.prototype.salvarNoticia = function(noticia, callback){
-
+	console.log('ronaldinho');
 	this._connection.query('insert into noticias set ? ', noticia, callback);
 }
 
