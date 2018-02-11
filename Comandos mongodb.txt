@@ -1,25 +1,39 @@
--Exibir, criar e remover databases:
+﻿-Exibir, criar e remover databases:
 Exibir: show dbs; (show databases);
 Criar: use (usado para alternar ou preparar um DB para criação);
 		Incluir documento: db.alunos.save({Nome: "Jorge"})
 Remover: db.dropDatabase();
 
--------------
+-----------------------------------------------------------------------------------------------------------------------------------
 -Exibir, criar e remover coleções:
 Criar coleção: db.createCollection("alunos")
 Exibir coleções: db.getCollectionNames()
 Remover coleção: db.nomeColecao.drop()
--------------
+-----------------------------------------------------------------------------------------------------------------------------------
 -Inserindo documentos:
 Foram inseridos: 3 documentos dentro da collection alunos, dentro do bd:
 curso_mongodb;
--------------
+
+db.alunos.save(json)
+
+Exemplos json:
+
+{
+	nome: 'Maria',
+	idade: 25,
+	sexo: 'F',
+	cursos_interesse: [
+		{curso: 'tal'},
+		{curso: 'outro'}
+	]
+}
+-----------------------------------------------------------------------------------------------------------------------------------
 -Consultando documentos com operadores de comparação:
 Ver últ. doc. adc.: db.nomeCollection.findOne()
 Ver todos: db.nomeCollection.find() (adicioanr pretty() para identar exib.)
 
 db.nomeCollection.find({nome:{$eq:"José"}}).pretty()
--------------
+-----------------------------------------------------------------------------------------------------------------------------------
 -Consultando documentos com operadores lógicos:
 && AND: 
 db.nomeCollection.find({
@@ -35,7 +49,7 @@ db.nomeCollection.find({
 							]
 						})
 						
---------------
+-----------------------------------------------------------------------------------------------------------------------------------
 -Atualizando documentos:
 update:
 ({parametros para atualizacao},
@@ -46,12 +60,66 @@ save:
 save(
 	_id: xxxxx
 )
----------------
+-----------------------------------------------------------------------------------------------------------------------------------
 -Removendo documentos:
 Remover documentos de dentro das collections:
 
 remove({critério de exclusão}, 0) justone: se for false, ou '0', irá remover todos,
 											se for true, remove apenas o 1º encontrado.
-----------------
+-----------------------------------------------------------------------------------------------------------------------------------
 -Interface gráfica nativa do MongoDB(inf. administrativas): função mongod --rest removida
 da versão 3.6.
+
+-----------------------------------------------------------------------------------------------------------------------------------
+Exercícios:
+Crie uma consulta que retorne apenas os documentos de livros com valores superiores a 200.00
+=
+db.livros.find(
+{
+valor:{$gt:200}
+}
+).pretty()
+-----------------------------------------------------------------------------------------------------------------------------------
+Crie uma consulta que retorne apenas os documentos com valores entre 10 e 30
+=
+db.livros.find(
+{
+valor:{$gte:10}, valor{$lte:30}
+}
+).pretty()
+-----------------------------------------------------------------------------------------------------------------------------------
+Atualize o documento cujo o título é PHP e MySQL, passando seu valor de 190.00 para 175.00
+=
+db.livros.update(
+{titulo:'PHP e MySQL'},
+{$set:{valor:175} }
+)
+-----------------------------------------------------------------------------------------------------------------------------------
+Atualize o documento cujo autor é Jorge, passando seu título para Curso Completo de NodeJS
+=
+db.livros.update(
+{autor:'Jorge'},
+{$set: {titulo:'Curso Completo de NodeJS'} }
+)
+-----------------------------------------------------------------------------------------------------------------------------------
+Atualize todos os documentos cujo valor são iguais ou inferiores a 25.00 para o valor 27.00
+=
+
+db.livros.update(
+	{ $or:[ {valor:{$lte:25} } ] },
+	{ $set:{valor:27} },
+	{multi:true}
+)
+-----------------------------------------------------------------------------------------------------------------------------------
+6) Remove os seguintes documentos:
+
+Remova o documento cujo autor é João
+
+-----------------------------------------------------------------------------------------------------------------------------------
+Remova todos os documentos cujo valor é superior a 280.00
+
+-----------------------------------------------------------------------------------------------------------------------------------
+Remova todos os documentos cujo valor é inferior a 30.00
+
+
+-----------------------------------------------------------------------------------------------------------------------------------
