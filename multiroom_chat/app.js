@@ -10,6 +10,8 @@ var server = app.listen(80, function(){
 
 var io = require('socket.io').listen(server);
 
+app.set('io', io);
+
 /* criar a conexão por websocket */
 
 io.on('connection', function(socket){
@@ -18,6 +20,4 @@ io.on('connection', function(socket){
 	socket.on('disconnect', function(){
 		console.log('Usuário desconectou');
 	});
-
-	
 });
