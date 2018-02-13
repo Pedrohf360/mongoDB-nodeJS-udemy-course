@@ -22,6 +22,8 @@ io.on('connection', function(socket){
 	});
 
 	socket.on('msgParaServidor', function(data){
+
+		/* dialogo */
 		socket.emit( // Aparece p/ quem enviou
 				'msgParaCliente', {
 					apelido: data.apelido,
@@ -31,5 +33,17 @@ io.on('connection', function(socket){
 				'msgParaCliente', {
 					apelido: data.apelido,
 					mensagem: data.mensagem});
+
+		/* participantes */
+		if(parseInt(data.apelido_atualizado_nos_clientes) == 0){
+			socket.emit( // Aparece p/ quem enviou
+					'participantesParaClientes', {
+						apelido: data.apelido});
+
+			socket.broadcast.emit( // Envia para todos
+					'participantesParaClientes', {
+						apelido: data.apelido});
+		}
+
 	});
 });
