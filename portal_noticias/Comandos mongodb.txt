@@ -52,20 +52,24 @@ db.nomeCollection.find({
 -----------------------------------------------------------------------------------------------------------------------------------
 -Atualizando documentos:
 update:
-({parametros para atualizacao},
-{$set}, 
-{multi:true}) // true = atualiza todos documentos; false = apenas o primeiro
+({query},
+{$set:{key:valor}}, 
+{multi:true}) // true = atualiza todos documentos; false = apenas o primeiro => default = false.
 
-save:
-save(
-	_id: xxxxx
+Ex.: 
+db.livros.update(
+{titulo:'PHP e MySQL'},
+{$set:{valor:175} }
 )
 -----------------------------------------------------------------------------------------------------------------------------------
 -Removendo documentos:
 Remover documentos de dentro das collections:
 
-remove({critério de exclusão}, 0) justone: se for false, ou '0', irá remover todos,
-											se for true, remove apenas o 1º encontrado.
+remove({critério de exclusão}, 0)
+
+// O segundo parâmetro (0) do método remove é conhecido como justOne.
+1: Removerá apenas o primeiro documento que a func remove encontrar;
+0: Removerá todos documentos que se encaixem nos critérios de exclusão.				
 -----------------------------------------------------------------------------------------------------------------------------------
 -Interface gráfica nativa do MongoDB(inf. administrativas): função mongod --rest removida
 da versão 3.6.
@@ -106,7 +110,7 @@ Atualize todos os documentos cujo valor são iguais ou inferiores a 25.00 para o
 =
 
 db.livros.update(
-	{ $or:[ {valor:{$lte:25} } ] },
+	{valor:{$lte:25} },
 	{ $set:{valor:27} },
 	{multi:true}
 )
@@ -114,12 +118,14 @@ db.livros.update(
 6) Remove os seguintes documentos:
 
 Remova o documento cujo autor é João
-
+-db.livro.remove({autor:'João'}, 1)
+*Just one? Yes!
 -----------------------------------------------------------------------------------------------------------------------------------
 Remova todos os documentos cujo valor é superior a 280.00
-
+db.livro.remove({valor:{$gt:200}}, 0)
+*Just one? No! All!!! MUAHHAHAA
 -----------------------------------------------------------------------------------------------------------------------------------
 Remova todos os documentos cujo valor é inferior a 30.00
-
-
+db.livro.remove({valor:{$lt:30}}, 0)
+*Just one? No. All!! MUHAHIAHIAH
 -----------------------------------------------------------------------------------------------------------------------------------
