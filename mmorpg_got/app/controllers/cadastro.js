@@ -18,5 +18,7 @@ module.exports.cadastrar = function (application, req, res) {
         return;
     }
 
+    var UsuariosDAO = new application.app.models.UsuariosDAO;
+
     res.send('podemos cadastrar');
 }
