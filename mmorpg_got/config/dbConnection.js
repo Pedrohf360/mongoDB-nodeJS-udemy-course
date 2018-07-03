@@ -10,9 +10,9 @@ var connMongoDb = function() {
         new mongo.Server(
             'localhost',
             8080,
-            {}
+            {} // OBJ COM CONFIGS DO SERVIDOR
         ),
-        {}
+        {} // OBJ COM CONFIGS ADICIONAIS
     );
 
     return db;
