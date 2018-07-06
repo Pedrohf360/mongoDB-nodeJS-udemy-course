@@ -1,23 +1,30 @@
 // Importar o mongodb
-var mongo = require('mongodb');
+var mongo = require("mongodb").MongoClient;
+var assert = require("assert");
 
-var connMongoDb = function() {
+const url = "mongodb://localhost:27017";
+const dbName = "got";
 
-    console.log('Entrou na função de conexão.');
-
-    var db = new mongo.Db(
-        'got',
-        new mongo.Server(
-            'localhost',
-            8080,
-            {} // OBJ COM CONFIGS DO SERVIDOR
-        ),
-        {} // OBJ COM CONFIGS ADICIONAIS
-    );
-
-    return db;
+var connMongoDB = function (dados) {
+    mongo.connect(url, function (err, client) {
+        assert.equal(null, err);
+        console.log("Connected successfully to server");
+        const db = client.db(dbName);
+        query(db, dados);
+        client.close();
+    });
+};
+function query(db, dados) {
+    var collection = db.collection(dados.collection);
+    switch (dados.operacao) {
+        case "inserir":
+            collection.insertOne(dados.usuario, dados.callback);
+            break;
+        default:
+            break;
+    }
 }
 
-module.exports = function() {
-    return connMongoDb;
-}
+module.exports = function () {
+    return connMongoDB;
+};  

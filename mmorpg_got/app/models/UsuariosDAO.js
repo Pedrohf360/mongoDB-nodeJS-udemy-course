@@ -1,15 +1,19 @@
 function UsuariosDAO(connection) {
-    this._connection = connection();
+    this._connection = connection;
 }
 
-UsuariosDAO.prototype.inserirUsuario = function(usuario) {
-    this._connection.open( function(err, mongoClient){
-        mongoClient.collection("usuarios", function(err, collection){
-            collection.insert(usuario);
-        });
-    });
-}
+UsuariosDAO.prototype.inserirUsuario = function (usuario, res) {
+    var dados = {
+        operacao: "inserir",
+        usuario: usuario,
+        collection: "usuarios",
+        callback: function (err, result) {
+            res.send("olá Marilene");
+        }
+    };
+    this._connection(dados);
+};
 
-module.exports = function() {
+module.exports = function () {
     return UsuariosDAO;
-}
+}; 
