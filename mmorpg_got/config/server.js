@@ -30,7 +30,7 @@ app.use(expressValidator());
 
 /* configura o middleware express-session */
 app.use(expressSession({
-	secret: '',
+	secret: 'mySecret',
 	resave: false,
 	saveUninitialized: false
 }));
